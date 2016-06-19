@@ -1,7 +1,6 @@
 # Bankdetail app
 A simple Angular, Rails app to fetch bank branch details based on city
-
-![Bankdetail](/public/app_screenshot.png?raw=true "bankdetail")
+![Bankdetail](/public/app_screenshot.png?raw=true "Bankdetail")
 
 ## Running app link
   http://bankdetail.herokuapp.com
