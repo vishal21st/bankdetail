@@ -3,6 +3,9 @@ A simple Angular, Rails app to fetch bank branch details based on city
 
 ![Bankdetail](/public/app_screenshot.png?raw=true "bankdetail")
 
+## Running app link
+  http://bankdetail.herokuapp.com
+
 ## Features:
   1. Get all banks in a dropdown list on top
   2. Get branch details by selecting city
