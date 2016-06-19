@@ -1,0 +1,81 @@
+<div class="container">
+  <h1 class="header">
+    Bank Details
+  </h1>
+  <div class="row">
+    <!-- Filter section -->
+    <div class="col-md-6">
+      <!-- BANK FILTER -->
+      <div class="bank-filter-wrap">
+        <ui-select ng-model="main.selectedBank" title="Select a Bank" 
+                   on-select="main.getCities($item)" ng-disabled="disabled">
+            <ui-select-match placeholder="Select A Bank">
+                <span ng-bind="$select.selected.name"></span>
+            </ui-select-match>
+            <ui-select-choices repeat="bank in (main.banks | filter: $select.search) track by bank.id">
+                <span ng-bind="bank.name"></span>
+            </ui-select-choices>
+        </ui-select>
+      </div>
+      
+      <!-- CITY FILTER -->
+      <div class="city-filter-wrap" search-filter>
+        <input type="text" class="form-control" id="city" name="city"
+                   ng-model="main.selectedCity"  
+                   uib-typeahead="city for city in main.cities | filter:$viewValue | limitTo:12"
+                   typeahead-loading="loadingLocations" typeahead-no-results="noResults"
+                   placeholder="Type city name to see branches" 
+                   typeahead-editable="false" autocomplete="off"
+                   typeahead-on-select="main.selectCity($item)"
+                   typeahead-no-results="no match found"
+                   typeahead-min-length='0'/>
+      </div>
+    </div>
+    
+    <!-- Result section -->
+    <div class="col-md-6">
+      <ul class="branch-list">
+        <li class="loader" ng-if="main.isFetchingBranches">
+          <img src="rolling.gif">
+        </li>
+        <li class="empty-branch-list" ng-if="main.branches.length == 0 && !main.isFetchingBranches">
+          No branch to show
+        </li>
+        <li ng-repeat="branch in main.branches" class="branch-details">
+          <div class="detail">
+            <span class="detail-label">
+              BRANCH:
+            </span>
+            <span class="detail-text">
+              {{::branch.branch}}
+            </span>
+          </div>
+          <div class="detail">
+            <span class="detail-label">
+              IFSC:
+            </span>
+            <span class="detail-text">
+              {{::branch.ifsc}}
+            </span>
+          </div>
+          <div class="detail">
+            <span class="detail-label">CITY:</span>
+            <span>{{::branch.city}}</span>
+          </div>
+          <div class="detail">
+            <span class="detail-label">DISTRICT:</span>
+            <span>{{::branch.district}}</span>
+          </div>
+          <div class="detail">
+            <span class="detail-label">STATE:</span>
+            <span>{{::branch.state}}</span>
+          </div>
+          <div class="detail">
+            <span for="" class="detail-label">ADDRESS:</span>
+            <span>{{::branch.address}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
